@@ -1,0 +1,26 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 14px;
+    background-color: orange;
+}
+
+article {
+    float: left;
+    margin: 20px;
+    width: 350px;
+    border: solid 2px black;
+    background-color: gold;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+a {
+    color: red;
+    text-decoration: none;
+}
+
+a:hover{
+    color: black;
+    text-decoration: underline;
+}
+
