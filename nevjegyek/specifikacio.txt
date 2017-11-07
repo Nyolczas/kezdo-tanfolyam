@@ -13,6 +13,7 @@ Később szeretném rendezhetővé tenni a megadott adatok alapján.
 
 4. adatbázis tervezése
 ----------------------
+id
 nev
 cegnev
 mobil
