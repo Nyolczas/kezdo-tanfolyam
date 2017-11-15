@@ -13,6 +13,15 @@ if (isset($_POST['rendben'])) {
     $email  = strip_tags(strtolower(trim($_POST['email'])));
 	
 	// Változók vizsgálata
+	if (empty($nev)) 
+		$hibak[] = "Nem adtál meg nevet!";
+	elseif (strlen($nev) < 5) 
+		$hibak[] = "Rossz nevet adtál meg!";
+	if (!empty($mobil) && strlen($mobil) < 9) 
+		$hibak[] = "Rossz mobilszámot adtál meg!";
+	if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) 
+		$hibak[] = "Rossz e-mail címet adtál meg!";
+	
     // Adatbázis feltöltése
     require("../kapcsolat.php");
     $sql = "INSERT INTO nevjegyek
