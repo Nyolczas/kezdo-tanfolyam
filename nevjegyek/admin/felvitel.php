@@ -7,8 +7,11 @@ if (isset($POST['rendben'])) {
     $mobil  = $_POST['mobil'];
     $email  = $_POST['email'];
     // Adatbázis feltöltése
-    $sql = "...";
     require("../kapcsolat.php");
+    $sql = "INSER INTO nevjegyek
+    (nev, cegnev, mobil, email)
+    VALUES
+    ('{$nev}', '{$cegnev}', '{$mobil}', '{$email}')";
     mysqli_query($dbconn, $sql);
     // print_r fejlesztés közben használjuk az oldalra kiírja a bemeneti értékeket.
     //print_r($_POST);

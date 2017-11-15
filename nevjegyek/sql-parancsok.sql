@@ -38,3 +38,9 @@ ORDER BY oszlop1 DESC
 SELECT * 
 FROM tablanev
 LIMIT 2
+
+-- Rekord beszúrása
+INSERT INTO tablanev
+(oszlop1, oszlop2, oszlop3)
+VALUES
+('ertek1', 'ertek2', ertek3)
