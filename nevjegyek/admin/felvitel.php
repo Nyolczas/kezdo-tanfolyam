@@ -1,20 +1,26 @@
 <?php
 // Űrlap feldolgozása
 // isset - ha létezik
-if (isset($POST['rendben'])) {
-    $nev    = $_POST['nev'];
-    $cegnev = $_POST['cegnev'];
-    $mobil  = $_POST['mobil'];
-    $email  = $_POST['email'];
-    // Adatbázis feltöltése
-    require("../kapcsolat.php");
-    $sql = "INSER INTO nevjegyek
-    (nev, cegnev, mobil, email)
-    VALUES
-    ('{$nev}', '{$cegnev}', '{$mobil}', '{$email}')";
-    mysqli_query($dbconn, $sql);
+if (isset($_POST['rendben'])) {
     // print_r fejlesztés közben használjuk az oldalra kiírja a bemeneti értékeket.
     //print_r($_POST);
+
+    // Változók Tisztítása
+    // ucfirst - csak az első betűt alakítja naggyá
+    $nev    = strip_tags(ucwords(strtolower(trim($_POST['nev']))));
+    $cegnev = strip_tags(trim($_POST['cegnev']));
+    $mobil  = strip_tags(trim($_POST['mobil']));
+    $email  = strip_tags(strtolower(trim($_POST['email'])));
+
+    // Adatbázis feltöltése
+    require("../kapcsolat.php");
+    $sql = "INSERT INTO nevjegyek
+            (nev, cegnev, mobil, email)
+            VALUES
+            ('{$nev}', '{$cegnev}', '{$mobil}', '{$email}')";
+    mysqli_query($dbconn, $sql);
+    // átirányítás:
+    header("Location: lista.php");
 }
 // Űrlap megjelenítése
 ?><!DOCTYPE html>
@@ -48,6 +54,7 @@ if (isset($POST['rendben'])) {
         <p><em>A *-gal jelölt mezők kitölése kötelező!</em></p>
         <input type="submit" id="rendben" name="rendben" value="Rendben">
         <input type="reset" value="Mégse">
+        <p><a href="lista.php">Vissza</a></p>
     </form>
 </body>
 </html>
