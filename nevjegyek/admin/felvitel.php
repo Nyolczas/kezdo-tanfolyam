@@ -10,9 +10,9 @@
 <body>
     <h1>Névjegykártyák</h1>
     <form method="post" action="">
-        <p> <label for="nev">Név:</label>
+        <p> <label for="nev">Név*:</label>
             <br>
-            <input type="text" id="nev" name="nev">
+            <input type="text" id="nev" name="nev" required>
         </p>
         <p> <label for="cegnev">Cégnév:</label>
             <br>
@@ -22,6 +22,13 @@
             <br>
             <input type="tel" id="mobil" name="mobil">
         </p>
+        <p> <label for="email">E-mail:</label>
+            <br>
+            <input type="email" id="email" name="email">
+        </p>
+        <p><em>A *-gal jelölt mezők kitölése kötelező!</em></p>
+        <input type="submit" id="rendben" name="rendben" value="Rendben">
+        <input type="reset" value="Mégse">
     </form>
 </body>
 </html>
