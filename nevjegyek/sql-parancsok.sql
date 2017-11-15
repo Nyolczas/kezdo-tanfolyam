@@ -44,3 +44,7 @@ INSERT INTO tablanev
 (oszlop1, oszlop2, oszlop3)
 VALUES
 ('ertek1', 'ertek2', ertek3)
+
+-- Rekordok törlése
+DELETE FROM tablanev
+WHERE feltetel

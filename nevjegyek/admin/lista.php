@@ -25,7 +25,7 @@ while ($sor = mysqli_fetch_assoc($eredmeny)) {
     <td>{$sor['cegnev']}</td>
     <td>{$sor['mobil']}</td>
     <td>{$sor['email']}</td>
-	<td><a href=''>Törlés</a> | <a href=''>Módosítás</a></td>
+	<td><a href='torles.php?id={$sor['id']}'>Törlés</a> | <a href='modositas.php?id={$sor['id']}'>Módosítás</a></td>
     </tr>";
 }
 $kimenet.= "</table>";
