@@ -1,5 +1,14 @@
 <?php
-print_r($POST);
+if (isset($_POST['rendben'])) {
+	$kimenet = "<h3>Feltöltött fájl adatai:</h3>
+	<ul>
+		<li>Filenév: {$_FILES['fajl']['name']}</li>
+		<li>Ideiglenes név:: {$_FILES['fajl']['tmp_name']}</li>
+		<li>Hibakód: {$_FILES['fajl']['error']}</li>
+		<li>Fileméret: {$_FILES['fajl']['size']} bytes</li>
+		<li>Filetípus: {$_FILES['fajl']['type']}</li>
+	</ul>";
+}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +19,10 @@ print_r($POST);
 </head>
 <body>
 <h1>Fájlfeltöltés</h1>
-    <form method="post" action="">
+    <form method="post" action="" enctype="multipart/form-data">
+	<?php if (isset($kimenet)) print $kimenet; ?>
         <input type="file" id="fajl" name="fajl">
+		<input type="submit" id="rendben" name="rendben" value="Feltöltés">
     </form>
 </body>
 </html>
