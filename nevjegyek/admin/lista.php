@@ -17,6 +17,7 @@ $kimenet = "<table>
             <th>Cégnév</th>
             <th>Mobil</th>
             <th>E-mail</th>
+			<th>Művelet</th>
     </tr>";
 while ($sor = mysqli_fetch_assoc($eredmeny)) {
     $kimenet.= "<tr>
@@ -24,6 +25,7 @@ while ($sor = mysqli_fetch_assoc($eredmeny)) {
     <td>{$sor['cegnev']}</td>
     <td>{$sor['mobil']}</td>
     <td>{$sor['email']}</td>
+	<td><a href=''>Törlés</a> | <a href=''>Módosítás</a></td>
     </tr>";
 }
 $kimenet.= "</table>";
