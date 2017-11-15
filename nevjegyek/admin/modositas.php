@@ -1,4 +1,5 @@
 <?php
+require("../kapcsolat.php");
 // Űrlap feldolgozása
 // isset - ha létezik
 if (isset($_POST['rendben'])) {
@@ -32,15 +33,28 @@ if (isset($_POST['rendben'])) {
 	}
 	else { //ha nincs hiba akkor..
     // Adatbázis feltöltése
-    require("../kapcsolat.php");
-    $sql = "INSERT INTO nevjegyek
-            (nev, cegnev, mobil, email)
-            VALUES
-            ('{$nev}', '{$cegnev}', '{$mobil}', '{$email}')";
+	$id = (int)$_POST['id'];
+    $sql = "UPDATE nevjegyek
+			SET nev = '{$nev}', cegnev = '{$cegnev}', mobil = '{$mobil}', email = '{$email}'
+			WHERE id = {$id}";
     mysqli_query($dbconn, $sql);
     // átirányítás:
     header("Location: lista.php");
 	}
+}
+// Űrlap előzetes kitöltése (lekérés az adatbázisból)	
+else {
+	$id = (int)$_GET['id'];
+	$sql = "SELECT *
+			FROM nevjegyek
+			WHERE id = {$id}";
+	$eredmeny = mysqli_query($dbconn, $sql); 
+	$sor    = mysqli_fetch_assoc($eredmeny);	
+	
+	$nev    = $sor['nev'];
+	$cegnev = $sor['cegnev'];
+	$mobil  = $sor['mobil'];
+	$email  = $sor['email'];
 }
 // Űrlap megjelenítése
 ?><!DOCTYPE html>
@@ -56,21 +70,22 @@ if (isset($_POST['rendben'])) {
     <h1>Névjegykártyák</h1>
     <form method="post" action="">
 		<?php if (isset($kimenet)) print $kimenet; ?>
+		<input type="hidden" id="id" name="id" value="<?php print $id; ?>" >
         <p> <label for="nev">Név*:</label>
             <br>
-            <input type="text" id="nev" name="nev" value="<?php if (isset($nev)) print $nev; ?>" required>
+            <input type="text" id="nev" name="nev" value="<?php print $nev; ?>" required>
         </p>
         <p> <label for="cegnev">Cégnév:</label>
             <br>
-            <input type="text" id="cegnev" name="cegnev" value="<?php if (isset($nev)) print $nev; ?>">
+            <input type="text" id="cegnev" name="cegnev" value="<?php print $nev; ?>">
         </p>
         <p> <label for="mobil">Mobil:</label>
             <br>
-            <input type="tel" id="mobil" name="mobil" value="<?php if (isset($nev)) print $nev; ?>">
+            <input type="tel" id="mobil" name="mobil" value="<?php print $nev; ?>">
         </p>
         <p> <label for="email">E-mail:</label>
             <br>
-            <input type="email" id="email" name="email" value="<?php if (isset($nev)) print $nev; ?>">
+            <input type="email" id="email" name="email" value="<?php print $nev; ?>">
         </p>
         <p><em>A *-gal jelölt mezők kitölése kötelező!</em></p>
         <input type="submit" id="rendben" name="rendben" value="Rendben">
