@@ -7,5 +7,5 @@ if (isset($_GET['id'])) {
 		WHERE id = {$id}";
 	mysqli_query($dbconn, $sql);
 }
-header(lista.php);
+header("Location: lista.php");
 ?>

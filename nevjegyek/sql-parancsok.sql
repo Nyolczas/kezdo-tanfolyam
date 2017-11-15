@@ -48,3 +48,7 @@ VALUES
 -- Rekordok törlése
 DELETE FROM tablanev
 WHERE feltetel
+
+-- Rekordok módosítása
+UPDATE tablanev
+SET oszlop1 = ertek1, oszlop2 = 'ertek2'
