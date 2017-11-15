@@ -1,6 +1,19 @@
 <?php
-// print_r fejlesztés közben használjuk az oldalra kiírja a bemeneti értékeket.
-print_r($_POST);
+// Űrlap feldolgozása
+// isset - ha létezik
+if (isset($POST['rendben'])) {
+    $nev    = $_POST['nev'];
+    $cegnev = $_POST['cegnev'];
+    $mobil  = $_POST['mobil'];
+    $email  = $_POST['email'];
+    // Adatbázis feltöltése
+    $sql = "...";
+    require("../kapcsolat.php");
+    mysqli_query($dbconn, $sql);
+    // print_r fejlesztés közben használjuk az oldalra kiírja a bemeneti értékeket.
+    //print_r($_POST);
+}
+// Űrlap megjelenítése
 ?><!DOCTYPE html>
 <html lang="en">
 <head>

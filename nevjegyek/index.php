@@ -1,7 +1,8 @@
 <?php
 require("kapcsolat.php");
 
-//print_r ($_POST);
+//print_r ($_POST); 
+//isset - ha létezik
 $kifejezes = (isset($_POST['kifejezes'])) ? $_POST['kifejezes'] : "";
 $sql = "SELECT *
         FROM nevjegyek
