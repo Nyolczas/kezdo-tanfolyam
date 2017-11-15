@@ -11,7 +11,8 @@ if (isset($_POST['rendben'])) {
     $cegnev = strip_tags(trim($_POST['cegnev']));
     $mobil  = strip_tags(trim($_POST['mobil']));
     $email  = strip_tags(strtolower(trim($_POST['email'])));
-
+	
+	// Változók vizsgálata
     // Adatbázis feltöltése
     require("../kapcsolat.php");
     $sql = "INSERT INTO nevjegyek
