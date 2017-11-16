@@ -2,19 +2,24 @@
 require("kapcsolat.php");
 
 // ====== Beállítások ======
-$mennyit = 10;
+$sql = "SELECT *
+        FROM nevjegyek";
+$eredmeny = mysqli_query($dbconn, $sql);  
+$osszes   = mysqli_num_rows($eredmeny);
+$mennyit  = 9;
+$lapok    = ceil($osszes / $mennyit);
 $aktualis = (isset($_GET['oldal'])) ? (int)$_GET['oldal'] : 1;
-$honnan = ($aktualis-1)*$mennyit;
+$honnan   = ($aktualis-1)*$mennyit;
 
 // ====== Lapozó ======
 $lapozo = "<p>";
 $lapozo.= ($aktualis != 1) ? "<a href='?oldal=1'>Első | </a>" : "Első | ";
-$lapozo.= ($aktualis > 1 && $aktualis <= 12) ? "<a href='?oldal=".($aktualis-1)."'>Előző | </a>" : "Előző | ";
-for ($oldal = 1; $oldal <=12; $oldal++) {
+$lapozo.= ($aktualis > 1 && $aktualis <= $lapok) ? "<a href='?oldal=".($aktualis-1)."'>Előző | </a>" : "Előző | ";
+for ($oldal = 1; $oldal <=$lapok; $oldal++) {
 	$lapozo.= ($aktualis != $oldal) ? "<a href='?oldal={$oldal}'> {$oldal}</a> |" : $oldal." |";
 }
-$lapozo.= ($aktualis > 1 && $aktualis <= 12) ? "<a href='?oldal=".($aktualis+1)."'> Következő | </a>" : " Következő | ";
-$lapozo.= ($aktualis != 12) ? "<a href='?oldal=12'>Utolsó</a>" : "Utolsó";
+$lapozo.= ($aktualis > 0 && $aktualis < $lapok) ? "<a href='?oldal=".($aktualis+1)."'> Következő | </a>" : " Következő | ";
+$lapozo.= ($aktualis != $lapok) ? "<a href='?oldal=12'>Utolsó</a>" : "Utolsó";
 $lapozo.= "</p>";
 
 //print_r($_GET);
