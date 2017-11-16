@@ -7,7 +7,7 @@ body {
 article {
     float: left;
     margin: 20px;
-    width: 20%;
+    width: 350px;
     border: solid 2px rgb(155, 88, 0);
     background-color: gold;
     border-radius: 10px;

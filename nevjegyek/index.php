@@ -3,7 +3,7 @@ require("kapcsolat.php");
 
 //LApozó
 
-$lapozo = "Első | Előző | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | Következő | Utolsó";
+$lapozo = "<p>Első | Előző | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | Következő | Utolsó</p>";
 
 //print_r ($_POST); 
 $kifejezes = (isset($_POST['kifejezes'])) ? $_POST['kifejezes'] : "";
@@ -15,7 +15,8 @@ $sql = "SELECT *
             OR mobil LIKE '%{$kifejezes}%'
             OR email LIKE '%{$kifejezes}%'
             )
-        ORDER BY nev ASC";
+        ORDER BY nev ASC
+		LIMIT 10";
 $eredmeny = mysqli_query($dbconn, $sql);  
 $kimenet = "";
 // kiolvasás:
@@ -44,6 +45,5 @@ while ($sor = mysqli_fetch_assoc($eredmeny)) {
     </form>
     <?php print $lapozo; ?>
 	<?php print $kimenet; ?>
-	<?php print $lapozo; ?>
 </body>
 </html>
