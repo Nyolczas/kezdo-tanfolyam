@@ -8,13 +8,13 @@ $honnan = ($aktualis-1)*$mennyit;
 
 // ====== Lapozó ======
 $lapozo = "<p>";
-$lapozo.= "<a href='?oldal=1'>Első | </a>";
-$lapozo.= "<a href='?oldal=".($aktualis-1)."'>Előző | </a>";
-for ($oldal = 1; $oldal <=10; $oldal++) {
-	$lapozo.= "<a href='?oldal={$oldal}'> {$oldal}</a> |";
+$lapozo.= ($aktualis != 1) ? "<a href='?oldal=1'>Első | </a>" : "Első | ";
+$lapozo.= ($aktualis != 1) ? "<a href='?oldal=".($aktualis-1)."'>Előző | </a>" : "Előző | ";
+for ($oldal = 1; $oldal <=12; $oldal++) {
+	$lapozo.= ($aktualis != $oldal) ? "<a href='?oldal={$oldal}'> {$oldal}</a> |" : $oldal." |";
 }
-$lapozo.= "<a href='?oldal=".($aktualis+1)."'> Következő | </a>";
-$lapozo.= "<a href='?oldal=10'>Utolsó</a>";
+$lapozo.= ($aktualis != 12) ? "<a href='?oldal=".($aktualis+1)."'> Következő | </a>" : " Következő | ";
+$lapozo.= ($aktualis != 12) ? "<a href='?oldal=12'>Utolsó</a>" : "Utolsó";
 $lapozo.= "</p>";
 
 //print_r($_GET);
