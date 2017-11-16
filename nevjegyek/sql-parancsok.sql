@@ -39,6 +39,10 @@ SELECT *
 FROM tablanev
 LIMIT 2
 
+SELECT * 
+FROM tablanev
+LIMIT 20, 10
+
 -- Rekord beszúrása
 INSERT INTO tablanev
 (oszlop1, oszlop2, oszlop3)
