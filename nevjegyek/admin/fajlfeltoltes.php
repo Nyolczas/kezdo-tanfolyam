@@ -23,9 +23,12 @@ if (isset($_POST['rendben'])) {
 			<li>Filetípus: {$_FILES['fajl']['type']}</li>
 		</ul>";
 		
-		// Új fájlnév
-		$fajl = ekezettelen($_FILES['fajl']['name']);
-		move_uploaded_file($_FILES['fajl']['tmp_name'], "kepek/".$fajl);
+		// Új fájlnév időbélyeg - ékezettelen
+		$fajl = date("U-").ekezettelen($_FILES['fajl']['name']);
+		if (!file_exists("kepek/".$fajl)) {
+			move_uploaded_file($_FILES['fajl']['tmp_name'], "kepek/".$fajl);
+		}
+		
 	}
 }
 ?><!DOCTYPE html>
