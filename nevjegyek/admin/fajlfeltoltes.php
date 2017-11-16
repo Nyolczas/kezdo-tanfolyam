@@ -1,17 +1,32 @@
 <?php
+
+//print_r(ekezettelen("Árvíztűrő tükörfúrógép"));
+
+function ekezettelen($szoveg) {
+	$mit = array("á", "é", "í", "ó", "ö", "ő", "ú", "ü", "ű", "Á", "É", "Í", "Ó", "Ö", "Ő", "Ú", "Ü", "Ű", "_", " ");
+	$mire = array("a", "e", "i", "o", "o", "o", "u", "u", "u", "A", "E", "I", "O", "O", "O", "U", "U", "U", "-", "-");
+	return str_replace($mit, $mire, $szoveg);
+}
+
 if (isset($_POST['rendben'])) {
 	
+	//Engedélyezett típusok
 	$mime = array("image/jpeg", "image/pjpeg", "image/png", "image/gif");	
-	if (in_array($_FILES['file']['type'], $mime)) {
-			$kimenet = "<h3>Feltöltött fájl adatai:</h3>
-			<ul>
-				<li>Filenév: {$_FILES['fajl']['name']}</li>
-				<li>Ideiglenes név:: {$_FILES['fajl']['tmp_name']}</li>
-				<li>Hibakód: {$_FILES['fajl']['error']}</li>
-				<li>Fileméret: {$_FILES['fajl']['size']} bytes</li>
-				<li>Filetípus: {$_FILES['fajl']['type']}</li>
-			</ul>";
-		}
+	//Filetipus meghatározása és méret korlátozása
+	if (in_array($_FILES['fajl']['type'], $mime) && $_FILES['fajl']['size'] < 2000000) {
+		$kimenet = "<h3>Feltöltött fájl adatai:</h3>
+		<ul>
+			<li>Filenév: {$_FILES['fajl']['name']}</li>
+			<li>Ideiglenes név:: {$_FILES['fajl']['tmp_name']}</li>
+			<li>Hibakód: {$_FILES['fajl']['error']}</li>
+			<li>Fileméret: {$_FILES['fajl']['size']} bytes</li>
+			<li>Filetípus: {$_FILES['fajl']['type']}</li>
+		</ul>";
+		
+		// Új fájlnév
+		$fajl = ekezettelen($_FILES['fajl']['name']);
+		move_uploaded_file($_FILES['fajl']['tmp_name'], "kepek/".$fajl);
+	}
 }
 ?><!DOCTYPE html>
 <html lang="en">
