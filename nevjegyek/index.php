@@ -1,8 +1,11 @@
 <?php
 require("kapcsolat.php");
 
+//LApozó
+
+$lapozo = "Első | Előző | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | Következő | Utolsó";
+
 //print_r ($_POST); 
-//isset - ha létezik
 $kifejezes = (isset($_POST['kifejezes'])) ? $_POST['kifejezes'] : "";
 $sql = "SELECT *
         FROM nevjegyek
@@ -39,7 +42,8 @@ while ($sor = mysqli_fetch_assoc($eredmeny)) {
     <form method="post" action="">
         <input type="search" id="kifejezes" name="kifejezes">
     </form>
-    <?php print $kimenet; ?>
-    
+    <?php print $lapozo; ?>
+	<?php print $kimenet; ?>
+	<?php print $lapozo; ?>
 </body>
 </html>
