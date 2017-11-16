@@ -1,24 +1,26 @@
 <?php
 require("kapcsolat.php");
 
-//LApozó
+// ====== Beállítások ======
+$mennyit = 10;
+$aktualis = (isset($_GET['oldal'])) ? $_GET['oldal'] : 1;
+$honnan = ($aktualis-1)*$mennyit;
 
+// ====== Lapozó ======
 $lapozo = "<p>";
 $lapozo.= "<a href='?oldal=1'>Első | </a>";
-$lapozo.= "Előző | ";
+$lapozo.= "<a href='?oldal=".($aktualis-1)."'>Előző | </a>";
 for ($oldal = 1; $oldal <=10; $oldal++) {
 	$lapozo.= "<a href='?oldal={$oldal}'> {$oldal}</a> |";
 }
-$lapozo.= " Következő | ";
+$lapozo.= "<a href='?oldal=".($aktualis+1)."'> Következő | </a>";
 $lapozo.= "<a href='?oldal=10'>Utolsó</a>";
 $lapozo.= "</p>";
 
 //print_r($_GET);
+//$_GET['oldal'];
 
-$_GET['oldal'];
 
-$mennyit = 10;
-$honnan = ($_GET['oldal']-1)*$mennyit;
 //print_r ($_POST); 
 $kifejezes = (isset($_POST['kifejezes'])) ? $_POST['kifejezes'] : "";
 $sql = "SELECT *
