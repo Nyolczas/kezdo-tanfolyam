@@ -62,15 +62,15 @@ if (isset($_POST['rendben'])) {
         </p>
         <p> <label for="cegnev">Cégnév:</label>
             <br>
-            <input type="text" id="cegnev" name="cegnev" value="<?php if (isset($nev)) print $nev; ?>">
+            <input type="text" id="cegnev" name="cegnev" value="<?php if (isset($cegnev)) print $cegnev; ?>">
         </p>
         <p> <label for="mobil">Mobil:</label>
             <br>
-            <input type="tel" id="mobil" name="mobil" value="<?php if (isset($nev)) print $nev; ?>">
+            <input type="tel" id="mobil" name="mobil" value="<?php if (isset($mobil)) print $mobil; ?>">
         </p>
         <p> <label for="email">E-mail:</label>
             <br>
-            <input type="email" id="email" name="email" value="<?php if (isset($nev)) print $nev; ?>">
+            <input type="email" id="email" name="email" value="<?php if (isset($email)) print $email; ?>">
         </p>
         <p><em>A *-gal jelölt mezők kitölése kötelező!</em></p>
         <input type="submit" id="rendben" name="rendben" value="Rendben">

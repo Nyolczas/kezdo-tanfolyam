@@ -1,13 +1,17 @@
 <?php
 if (isset($_POST['rendben'])) {
-	$kimenet = "<h3>Feltöltött fájl adatai:</h3>
-	<ul>
-		<li>Filenév: {$_FILES['fajl']['name']}</li>
-		<li>Ideiglenes név:: {$_FILES['fajl']['tmp_name']}</li>
-		<li>Hibakód: {$_FILES['fajl']['error']}</li>
-		<li>Fileméret: {$_FILES['fajl']['size']} bytes</li>
-		<li>Filetípus: {$_FILES['fajl']['type']}</li>
-	</ul>";
+	
+	$mime = array("image/jpeg", "image/pjpeg", "image/png", "image/gif");	
+	if (in_array($_FILES['file']['type'], $mime)) {
+			$kimenet = "<h3>Feltöltött fájl adatai:</h3>
+			<ul>
+				<li>Filenév: {$_FILES['fajl']['name']}</li>
+				<li>Ideiglenes név:: {$_FILES['fajl']['tmp_name']}</li>
+				<li>Hibakód: {$_FILES['fajl']['error']}</li>
+				<li>Fileméret: {$_FILES['fajl']['size']} bytes</li>
+				<li>Filetípus: {$_FILES['fajl']['type']}</li>
+			</ul>";
+		}
 }
 ?><!DOCTYPE html>
 <html lang="en">

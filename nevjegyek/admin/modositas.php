@@ -77,15 +77,15 @@ else {
         </p>
         <p> <label for="cegnev">Cégnév:</label>
             <br>
-            <input type="text" id="cegnev" name="cegnev" value="<?php print $nev; ?>">
+            <input type="text" id="cegnev" name="cegnev" value="<?php print $cegnev; ?>">
         </p>
         <p> <label for="mobil">Mobil:</label>
             <br>
-            <input type="tel" id="mobil" name="mobil" value="<?php print $nev; ?>">
+            <input type="tel" id="mobil" name="mobil" value="<?php print $mobil; ?>">
         </p>
         <p> <label for="email">E-mail:</label>
             <br>
-            <input type="email" id="email" name="email" value="<?php print $nev; ?>">
+            <input type="email" id="email" name="email" value="<?php print $email; ?>">
         </p>
         <p><em>A *-gal jelölt mezők kitölése kötelező!</em></p>
         <input type="submit" id="rendben" name="rendben" value="Rendben">
