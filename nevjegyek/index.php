@@ -3,17 +3,17 @@ require("kapcsolat.php");
 
 // ====== Beállítások ======
 $mennyit = 10;
-$aktualis = (isset($_GET['oldal'])) ? $_GET['oldal'] : 1;
+$aktualis = (isset($_GET['oldal'])) ? (int)$_GET['oldal'] : 1;
 $honnan = ($aktualis-1)*$mennyit;
 
 // ====== Lapozó ======
 $lapozo = "<p>";
 $lapozo.= ($aktualis != 1) ? "<a href='?oldal=1'>Első | </a>" : "Első | ";
-$lapozo.= ($aktualis != 1) ? "<a href='?oldal=".($aktualis-1)."'>Előző | </a>" : "Előző | ";
+$lapozo.= ($aktualis > 1 && $aktualis <= 12) ? "<a href='?oldal=".($aktualis-1)."'>Előző | </a>" : "Előző | ";
 for ($oldal = 1; $oldal <=12; $oldal++) {
 	$lapozo.= ($aktualis != $oldal) ? "<a href='?oldal={$oldal}'> {$oldal}</a> |" : $oldal." |";
 }
-$lapozo.= ($aktualis != 12) ? "<a href='?oldal=".($aktualis+1)."'> Következő | </a>" : " Következő | ";
+$lapozo.= ($aktualis > 1 && $aktualis <= 12) ? "<a href='?oldal=".($aktualis+1)."'> Következő | </a>" : " Következő | ";
 $lapozo.= ($aktualis != 12) ? "<a href='?oldal=12'>Utolsó</a>" : "Utolsó";
 $lapozo.= "</p>";
 
@@ -34,16 +34,24 @@ $sql = "SELECT *
         ORDER BY nev ASC
 		LIMIT {$honnan}, {$mennyit}";
 $eredmeny = mysqli_query($dbconn, $sql);  
-$kimenet = "";
-// kiolvasás:
-while ($sor = mysqli_fetch_assoc($eredmeny)) {
-    $kimenet.= "<article>
-        <h2>{$sor['nev']}</h2>
-        <h3>{$sor['cegnev']}</h3>
-        <p><a href=\"tel:{$sor['mobil']}\">Mobil: {$sor['mobil']}</a></p>
-        <p><a href=\"mailto: {$sor ['email']}\">Email: {$sor ['email']}</a></p>
+
+if (@mysqli_num_rows($eredmeny) < 1) {
+	$kimenet = "<article>
+        <h2>Nincs találat a rendszerben!</h2>
         </article>\n";
-        // print_r($sor);
+}
+else {
+	$kimenet = "";
+	// kiolvasás:
+	while ($sor = mysqli_fetch_assoc($eredmeny)) {
+		$kimenet.= "<article>
+			<h2>{$sor['nev']}</h2>
+			<h3>{$sor['cegnev']}</h3>
+			<p><a href=\"tel:{$sor['mobil']}\">Mobil: {$sor['mobil']}</a></p>
+			<p><a href=\"mailto: {$sor ['email']}\">Email: {$sor ['email']}</a></p>
+			</article>\n";
+			// print_r($sor);
+	}
 }
 ?><!DOCTYPE html>
 <html lang="en">
