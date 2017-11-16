@@ -7,11 +7,18 @@ $lapozo = "<p>";
 $lapozo.= "<a href='?oldal=1'>Első | </a>";
 $lapozo.= "Előző | ";
 for ($oldal = 1; $oldal <=10; $oldal++) {
-	$lapozo.= "<a href='?oldal={$oldal}'>{ $oldal}</a> |";
+	$lapozo.= "<a href='?oldal={$oldal}'> {$oldal}</a> |";
 }
-$lapozo.= "Következő | ";
-$lapozo.= "<a href='?oldal=10'>Utolsó</a></p>";
+$lapozo.= " Következő | ";
+$lapozo.= "<a href='?oldal=10'>Utolsó</a>";
+$lapozo.= "</p>";
 
+//print_r($_GET);
+
+$_GET['oldal'];
+
+$mennyit = 10;
+$honnan = ($_GET['oldal']-1)*$mennyit;
 //print_r ($_POST); 
 $kifejezes = (isset($_POST['kifejezes'])) ? $_POST['kifejezes'] : "";
 $sql = "SELECT *
@@ -23,7 +30,7 @@ $sql = "SELECT *
             OR email LIKE '%{$kifejezes}%'
             )
         ORDER BY nev ASC
-		LIMIT 10, 10";
+		LIMIT {$honnan}, {$mennyit}";
 $eredmeny = mysqli_query($dbconn, $sql);  
 $kimenet = "";
 // kiolvasás:
