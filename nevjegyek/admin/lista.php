@@ -50,8 +50,8 @@ $kimenet.= "</table>";
     <form method="post" action="">
         <input type="search" id="kifejezes" name="kifejezes">
     </form>
-    <p><a href="felvitel.php">Új névjegy</a></p>
+    <p><a href="felvitel.php">Új névjegy</a> | <a href="kilepes.php">Kilépés</a> </p>
     <?php print $kimenet; ?>
-    <p><a href="felvitel.php">Új névjegy</a></p>
+    <p><a href="felvitel.php">Új névjegy</a> | <a href="kilepes.php">Kilépés</a> </p>
 </body>
 </html>
