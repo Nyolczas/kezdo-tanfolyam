@@ -12,11 +12,13 @@ if (isset($_POST['rendben'])) {
 			$hiba = "Hibás e-mail címet, vagy jelszót adtál meg!";
 		}
 		else {
-			if ($email == "jancsi" && $jelszo == "juliska") {
+			//sikeres
+			if ($email == "jancsi@gmail.com" && $jelszo == "juliska") {
 				$_SESSION['belepett'] = true;
 				header("Location: lista.php");
 			}
 			else {
+				//sikertelen
 				$hiba = "Hibás e-mail címet, vagy jelszót adtál meg!";
 			}
 		}
