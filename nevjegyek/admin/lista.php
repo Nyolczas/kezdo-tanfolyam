@@ -1,4 +1,11 @@
 <?php
+//Lapvédelem
+session_start();
+if (!isset($_SESSION['belepett'])) {
+	header("Location: index.php");
+	exit();
+}	
+
 require("../kapcsolat.php");
 $kifejezes = (isset($_POST['kifejezes'])) ? $_POST['kifejezes'] : "";
 $sql = "SELECT *

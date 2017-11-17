@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['belepett'])) {
+	header("Location: index.php");
+	exit();
+}
+
 // Űrlap feldolgozása
 // isset - ha létezik
 if (isset($_POST['rendben'])) {
@@ -28,6 +34,7 @@ if (isset($_POST['rendben'])) {
 		foreach($hibak as $hiba) {
 			$kimenet.= "<li>{$hiba} </li>\n";
 		}
+		
 		$kimenet.= "</ul>\n";
 	}
 	else { //ha nincs hiba akkor..

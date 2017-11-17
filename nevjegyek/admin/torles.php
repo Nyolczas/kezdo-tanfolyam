@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['belepett'])) {
+	header("Location: index.php");
+	exit();
+}
+
 //print_r($_GET);
 if (isset($_GET['id'])) {
 	require("../kapcsolat.php");

@@ -1,4 +1,12 @@
 <?php
+session_start();
+if (!isset($_SESSION['belepett'])) {
+	header("Location: index.php");
+	exit();
+}
+
+if (!isset($_REQUEST['id'])) header("Location: lista.php");
+
 require("../kapcsolat.php");
 // Űrlap feldolgozása
 // isset - ha létezik
