@@ -5,22 +5,22 @@ if (isset($_POST['rendben'])) {
 	
 	//változók tisztítása
 	$email = strip_tags(strtolower(trim($_POST['email'])));
-	$jelszo = sha1($_POST['jelszo']);
+	$jelszo = ($_POST['jelszo']);
 	//változók ellenőrzése
-	if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))  {
+	if (empty($email) || 
+		!filter_var($email, FILTER_VALIDATE_EMAIL) )  {
 			$hiba = "Hibás e-mail címet, vagy jelszót adtál meg!";
 		}
-		// Beléptetés
 		else {
 			require("../kapcsolat.php");
 			$sql = "SELECT *
 					FROM felhasznalok
 					WHERE email = '{$email}'
-					AND jelszo = '{$jelszo}'";
+					AND ($jelszo) = '{$jelszo}'";
 			$eredmeny = mysqli_query($dbconn, $sql);
 			
 			//sikeres
-			if (mysqli_num_rows($eredmeny) > 0) {
+			if (mysqli_num_rows($eredmeny) > 0);
 				$_SESSION['belepett'] = true;
 				header("Location: lista.php");
 			}
