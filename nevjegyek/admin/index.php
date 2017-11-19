@@ -4,7 +4,8 @@ session_start();
 if (isset($_POST['rendben'])) {
 	
 	//változók tisztítása
-	$email = strip_tags(strtolower(trim($_POST['email'])));
+	require("../kapcsolat.php");
+	$email = mysqli_real_escape_string($dbconn, strip_tags(strtolower(trim($_POST['email']))));
 	$jelszo = sha1($_POST['jelszo']);
 	//változók ellenőrzése
 	if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))  {
@@ -12,15 +13,15 @@ if (isset($_POST['rendben'])) {
 		}
 		// Beléptetés
 		else {
-			require("../kapcsolat.php");
-			$sql = "SELECT *
+			$sql = "SELECT id
 					FROM felhasznalok
 					WHERE email = '{$email}'
-					AND jelszo = '{$jelszo}'";
+					AND jelszo = '{$jelszo}'
+					LIMIT 2";
 			$eredmeny = mysqli_query($dbconn, $sql);
 			
 			//sikeres
-			if (mysqli_num_rows($eredmeny) > 0) {
+			if (mysqli_num_rows($eredmeny) == 1) {
 				$_SESSION['belepett'] = true;
 				header("Location: lista.php");
 			}
